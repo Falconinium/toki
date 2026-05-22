@@ -1,27 +1,129 @@
+/* app/globals.css — Variables CSS palette Toki "Shiki" + base Tailwind + tokens shadcn/ui */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* === Palette Toki — Saisons japonaises === */
+
+    /* Sakura (桜) — Rose printemps */
+    --toki-sakura-50: #fef2f4;
+    --toki-sakura-100: #fde6ea;
+    --toki-sakura-300: #f9a8b8;
+    --toki-sakura-500: #ec4a6f;
+    --toki-sakura-700: #c42352;
+
+    /* Indigo (藍) — Bleu profond */
+    --toki-ai-50: #eff1fe;
+    --toki-ai-100: #d9ddfb;
+    --toki-ai-300: #8b96f0;
+    --toki-ai-500: #4552d4;
+    --toki-ai-700: #2a3199;
+    --toki-ai-900: #191d5a;
+
+    /* Matcha (抹茶) — Vert thé */
+    --toki-matcha-50: #f0f7f0;
+    --toki-matcha-100: #d5ecd5;
+    --toki-matcha-300: #7fbf7f;
+    --toki-matcha-500: #3d8b3d;
+    --toki-matcha-700: #265e26;
+
+    /* Vermillon (朱) — Rouge torii */
+    --toki-shu-50: #fff4ed;
+    --toki-shu-100: #ffe3cf;
+    --toki-shu-300: #ff9f6a;
+    --toki-shu-500: #e8601a;
+    --toki-shu-700: #b8420d;
+
+    /* Sumi (墨) — Encre (neutres) */
+    --toki-sumi-50: #f8f7f5;
+    --toki-sumi-100: #eeece8;
+    --toki-sumi-200: #ddd9d2;
+    --toki-sumi-400: #a09889;
+    --toki-sumi-600: #6b6259;
+    --toki-sumi-800: #3d372f;
+    --toki-sumi-900: #272420;
+
+    /* Washi (和紙) — Fond crème papier japonais */
+    --toki-washi: #faf8f4;
+
+    /* === Tokens shadcn/ui mappés sur la palette Toki ===
+       Aucun blanc pur (#fff) ni noir pur (#000) — tout passe par washi/sumi. */
+    --background: var(--toki-washi);
+    --foreground: var(--toki-sumi-900);
+
+    --card: var(--toki-sumi-50);
+    --card-foreground: var(--toki-sumi-900);
+
+    --popover: var(--toki-sumi-50);
+    --popover-foreground: var(--toki-sumi-900);
+
+    --primary: var(--toki-ai-500);
+    --primary-foreground: var(--toki-washi);
+
+    --secondary: var(--toki-sumi-100);
+    --secondary-foreground: var(--toki-sumi-800);
+
+    --muted: var(--toki-sumi-100);
+    --muted-foreground: var(--toki-sumi-600);
+
+    --accent: var(--toki-shu-100);
+    --accent-foreground: var(--toki-sumi-900);
+
+    --destructive: var(--toki-sakura-700);
+    --destructive-foreground: var(--toki-washi);
+
+    --border: var(--toki-sumi-200);
+    --input: var(--toki-sumi-200);
+    --ring: var(--toki-ai-500);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    @apply bg-washi text-sumi-900;
+    font-family: var(--font-outfit), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Texture papier washi appliquée globalement, très subtilement, sur le body. */
+  body {
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(61, 55, 47, 0.035) 1px,
+        transparent 0
+      );
+    background-size: 24px 24px;
+    background-attachment: fixed;
+  }
+
+  /* Respect du prefers-reduced-motion : on neutralise les animations longues / pulse,
+     mais on garde les courtes transitions (color, dashoffset) pour préserver le sens. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Texture washi (variante utilitaire, plus marquée — pour cards/panels). */
+  .texture-washi {
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(61, 55, 47, 0.05) 1px,
+        transparent 0
+      );
+    background-size: 24px 24px;
   }
 }

@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# documentation interne (design system, contraintes)
+CLAUDE.md
+CLAUDE.MD

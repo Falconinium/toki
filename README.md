@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Toki — 時
 
-## Getting Started
+> **Maîtrise ton temps.**
 
-First, run the development server:
+Un minuteur en ligne, coloré, d'inspiration japonaise. Deux univers : **Sport** (le corps) et **Travail** (l'esprit). Pas de compte, pas de mémoire. Ouvre, respire, commence.
+
+## Fonctionnalités
+
+### スポーツ — Sport
+- **Tabata** — 20s effort / 10s repos × 8 (configurable)
+- **EMOM** — Every Minute On the Minute
+- **AMRAP** — As Many Rounds As Possible (durée fixe)
+- **Custom** — Effort, repos, séries, rounds, repos entre rounds, tout est libre
+- Compte à rebours de démarrage 3-2-1
+- Sons japonais traditionnels (taiko, cloche de temple) aux transitions
+
+### 仕事 — Travail
+- **Pomodoro** — 25min focus / 5min pause / 15min pause longue toutes les 4 (configurable)
+- **Flow** — Mode deep work, chronomètre vers le haut, cercle qui respire, pluie d'ambiance optionnelle, rappel optionnel
+- **Citations zen** (30+) affichées pendant les pauses : 七転八起, 一期一会, 侘寂…
+
+## Philosophie
+
+- 🎨 **Coloré** — palette inspirée des saisons japonaises (Shiki, 四季) : sakura, indigo, matcha, vermillon sur fond crème washi. Jamais de noir/blanc pur.
+- 🔇 **Sans compte, sans inscription** — l'app ne stocke rien. Fermer l'onglet = tout est perdu. C'est voulu.
+- 📱 **Mobile-first** — pensé pour être posé sur un meuble pendant un entraînement
+- 🎌 **Japonais authentique** — kanji, romaji, vocabulaire vérifiés (集中, 休憩, 流れ…)
+- 🔊 **Sons traditionnels** — taiko, cloche de temple (rin), bol chantant via Web Audio API
+
+## Stack
+
+- **Next.js 14** (App Router) + **TypeScript** strict
+- **Tailwind CSS** + **shadcn/ui** (Radix primitives)
+- **Web Audio API** pour les sons (préchargement en `AudioBuffer`)
+- **Zéro backend** — pas de base de données, pas d'auth, pas de persistance
+- Déployé sur **Vercel**
+
+## Développement
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Sons
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Les fichiers audio ne sont pas inclus dans le repo. Dépose 6 fichiers `.mp3` dans `public/sounds/` selon [public/sounds/README.md](public/sounds/README.md). L'app fonctionne sans (silencieuse).
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licence
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
