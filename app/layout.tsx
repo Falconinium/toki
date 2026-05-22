@@ -37,7 +37,14 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
+// Base URL utilisée pour rendre absolues les URLs OG, sitemap, robots, etc.
+// NEXT_PUBLIC_SITE_URL si défini, sinon Vercel l'auto-injecte (preview/prod), sinon localhost.
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Toki (時) — Minuteur japonais pour le sport et le travail",
   description:
     "Timer en ligne gratuit inspiré du Japon. Tabata, EMOM, AMRAP, Pomodoro et mode Flow. Sans compte, sans inscription.",
@@ -49,6 +56,7 @@ export const metadata: Metadata = {
     "japonais",
     "sport",
     "focus",
+    "flow",
   ],
   authors: [{ name: "Toki" }],
   openGraph: {
@@ -57,6 +65,13 @@ export const metadata: Metadata = {
       "Minuteur en ligne d'inspiration japonaise. Sport (Tabata/EMOM/AMRAP) et Travail (Pomodoro/Flow). Sans compte.",
     type: "website",
     locale: "fr_FR",
+    siteName: "Toki",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Toki (時) — Maîtrise ton temps",
+    description:
+      "Minuteur en ligne d'inspiration japonaise. Tabata, Pomodoro, mode Flow. Sans compte.",
   },
 };
 
